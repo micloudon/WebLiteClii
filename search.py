@@ -3,7 +3,19 @@ from ddgs import DDGS
 
 print("Welcome to the WebLite CLI Tool")
 
-def validate():
+def validate_text():
+    while True:
+        query = input("Enter your search: ")
+        if query:
+            break
+        else:
+            print("Invalid input. Please enter a search term.")
+            continue  
+    return query
+    
+
+
+def validate_number():
     while True:
         try:
             max_results = input("Enter the number of results: ")
@@ -22,8 +34,8 @@ def validate():
 
 def search_ddgs_text():
     region='us-en'
-    query = input("Enter your search: ")
-    max_results = validate()
+    query = validate_text()
+    max_results = validate_number()
     results = DDGS().text(query=query, region=region, max_results=int(max_results))
     print("Searching DuckDuckGo for:", query)
     for r in results:
